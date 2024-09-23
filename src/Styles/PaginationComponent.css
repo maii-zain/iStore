@@ -1,0 +1,43 @@
+.custom-pagination .page-item {
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    margin: 0 0.2rem;
+    color: #191a1b; 
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .custom-pagination .page-item.active {
+    background-color: #002ab3; 
+    border-color: #fcfcfc;
+    color: white;
+  }
+  
+  .custom-pagination .page-item:hover {
+    background-color: #002ab3; 
+    color: white;
+    transform: scale(1.1); 
+  }
+  
+  .custom-pagination .page-item:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .custom-pagination .page-item:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .custom-pagination .pagination-prev, 
+  .custom-pagination .pagination-next {
+    padding: 0.5rem 1rem;
+  }
+  
+  @media (max-width: 576px) {
+    .custom-pagination .page-item {
+      padding: 0.4rem 0.5rem; 
+      font-size: 0.875rem;
+    }
+  }
+  
