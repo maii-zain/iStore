@@ -10,6 +10,7 @@ const AllProducts = () => {
   const [products, setProducts] = useState([]); 
   const [filteredProducts, setFilteredProducts] = useState([]); 
   const [searchResults, setSearchResults] = useState([]);
+  const [cart, setCart] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true); 
   const [searching, setSearching] = useState(false); 
@@ -68,6 +69,11 @@ const AllProducts = () => {
     setCurrentPage(1); 
   };
 
+  const handleAddToCart = (product) => {
+    setCart([...cart, product]); 
+    alert(`${product.title} has been added to the cart!`);
+  };
+
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = searchResults.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -90,7 +96,10 @@ const AllProducts = () => {
             {currentProducts.length > 0 ? (
               currentProducts.map((product) => (
                 <Col key={product.id} xs={12} sm={6} lg={4}>
-                  <ProductCard product={product} />
+                  <ProductCard 
+                    product={product} 
+                    onAddToCart={() => handleAddToCart(product)}
+                  />
                 </Col>
               ))
             ) : (

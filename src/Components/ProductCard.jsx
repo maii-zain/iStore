@@ -1,40 +1,21 @@
-import React, { useState } from 'react';
-import { Card, Button } from 'react-bootstrap';
-import '../Styles/ProductCard.css'; 
+import React from 'react';
+import { Card } from 'react-bootstrap';
+import CustomButton from './Button'; 
 
-const ProductCard = ({ product }) => {
-  const [readMore, setReadMore] = useState(false);
-
-
-  const descriptionPreview = product.description.slice(0, 100);
-
-  const toggleReadMore = () => setReadMore(!readMore);
-
+const ProductCard = ({ product, onAddToCart }) => {
   return (
-    <Card className="product-card">
+    <Card style={{ width: '100%' }} className="mb-4">
       <Card.Img 
         variant="top" 
         src={product.image} 
         alt={product.title} 
-        className="product-card-img" 
+        style={{ height: '150px', objectFit: 'contain', padding: '10px' }} 
       />
       <Card.Body>
-        <Card.Title className="product-card-title">{product.title}</Card.Title>
-        <Card.Text className="product-card-text">
-          {readMore ? product.description : descriptionPreview}
-          {product.description.length > 100 && (
-            <Button 
-              variant="link" 
-              onClick={toggleReadMore} 
-              className="product-card-readmore-btn"
-            >
-              {readMore ? ' Read Less' : '...Read More'}
-            </Button>
-          )}
-        </Card.Text>
-        <Card.Text className="product-card-price">
-          Price: ${product.price}
-        </Card.Text>
+        <Card.Title className="text-truncate">{product.title}</Card.Title>
+        <Card.Text>{product.description.slice(0, 100)}...</Card.Text>
+        <Card.Text><strong>Price: ${product.price}</strong></Card.Text>
+        <CustomButton text="Add to Cart" onClick={() => onAddToCart(product)} />
       </Card.Body>
     </Card>
   );
